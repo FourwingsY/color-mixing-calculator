@@ -1,7 +1,6 @@
 import React from 'react'
-
-import Draggable from './Draggable'
-import Color from "./Color"
+import Color from "../Color"
+import Draggable from '../Draggable'
 
 function d2r(degrees) {
   return degrees * Math.PI / 180
@@ -21,24 +20,19 @@ class HueSelect extends Draggable {
     onSelect: (hue) => {}
   }
 
-  state = {
-    isDragging: false
-  }
-
   size = [340, 340]
   padding = 10
   center = [160, 160]
   radius = 150
   thick = 20
 
-  setPosition = (e) => {
+  setPosition(e) {
     let selectorNode = this.draggingNode
     let selectorRect = selectorNode.getBoundingClientRect()
 
     let x = e.clientX - selectorRect.left - 20 - this.center[0]
     let y = e.clientY - selectorRect.top - 20 - this.center[1]
     let hue = mod(r2d(Math.atan2(y, x)) + 360, 360)
-    this.setState({hue})
     this.props.onSelect(hue)
   }
 
@@ -70,10 +64,8 @@ class HueSelect extends Draggable {
 
   renderHandle() {
     let hue = this.props.color.toHSL().hue()
-    console.log(this.props.color.toHSL())
     let cx = this.center[0] + this.radius * Math.cos(d2r(hue))
     let cy = this.center[1] + this.radius * Math.sin(d2r(hue))
-    console.log(cx, cy)
 
     return <circle cx={cx} cy={cy} r="5" fill="none" stroke="black" />
   }

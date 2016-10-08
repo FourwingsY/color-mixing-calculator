@@ -9,7 +9,8 @@ class ColorPicker extends React.Component {
 
   static propTypes = {
     color: React.PropTypes.object,
-    onChange: React.PropTypes.func
+    onChange: React.PropTypes.func,
+    fixedOpacity: React.PropTypes.bool
   }
 
   setColor = (color) => {
@@ -34,12 +35,12 @@ class ColorPicker extends React.Component {
   }
 
   setSaturation = (saturation) => {
-    let newColor = this.props.color.saturation(saturation)
+    let newColor = this.props.color.toHSL().saturation(saturation)
     this.props.onChange(newColor)
   }
 
   setLightness = (lightness) => {
-    let newColor = this.props.color.lightness(lightness)
+    let newColor = this.props.color.toHSL().lightness(lightness)
     this.props.onChange(newColor)
   }
 
@@ -51,7 +52,7 @@ class ColorPicker extends React.Component {
           <HueSelect color={this.props.color} onSelect={this.setHue} />
           <SLSelect color={this.props.color} onSelect={this.setSL} />
         </div>
-        <ColorSlider color={this.props.color} valueOf="alpha" onChange={this.setAlpha} vertical />
+        <ColorSlider color={this.props.color} valueOf="alpha" onChange={this.setAlpha} disabled={this.props.fixedOpacity} vertical />
         <ColorSlider color={this.props.color} valueOf="lightness" onChange={this.setLightness} />
         <ColorAsValue color={this.props.color} onChange={this.setColor} />
       </div>

@@ -59,8 +59,7 @@ class Draggable extends React.Component {
   }
 
   setPosition(e) {
-    console.log("You have to override this function!")
-    return false
+    throw new Error("You have to implement setPosition()")
   }
 }
 

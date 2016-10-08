@@ -3,6 +3,8 @@
   --hue-selector-stroke-width: 20px;
   --hue-selector-margin: 10px;
   --sl-selector-width: calc(var(--hue-selector-radius) - var(--hue-selector-stroke-width) / 2 - 10px);
+  --color-box-size: 200px;
+  --slider-size: 200px;
 }
 html, body {
   margin: 0;
@@ -11,110 +13,194 @@ html, body {
 body {
   font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.color-preview {
-  width: 200px;
-  height: 200px;
+
+#logo {
+  display: block;
+  height: 350px;
+  margin: 0 auto;
+}
+
+h1 {
+  display: none;
+}
+h2 {
+  width: 920px;
+  margin: 10px auto;
+}
+
+.color-mixing-calculator {
+  width: 920px;
+  margin: 10px auto;
+}
+
+.color-box {
+  position: relative;
+  display: inline-block;
+  width: var(--color-box-size);
+  height: var(--color-box-size);
+
+  & .color-preview {
+    display: inline-block;
+    vertical-align: top;
+    width: var(--color-box-size);
+    height: var(--color-box-size);
+    & button {
+      position: absolute;
+      bottom: 0;
+      width: 20px;
+      height: 20px;
+      padding: 2px;
+      background: rgba(255,255,255,0.5) url(img/color-picker.png) no-repeat center;
+      background-size: 20px 20px;
+      border: none;
+      box-sizing: content-box;
+      &:hover {
+        background-color: rgba(255,255,255, 0.8);
+      }
+    }
+  }
+}
+
+.math-symbol {
+  display: inline-block;
+  width: 30px;
+  height: var(--color-box-size);
+  line-height: var(--color-box-size);
+  vertical-align: top;
+  font-size: 20px;
+  text-align: center;
+}
+
+.mixed-result {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: var(--color-box-size);
+  height: var(--color-box-size);
+  background: url('img/transparent.png');
+
+  & .background, & .foreground {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border-radius: 20px;
+  }
+  & .background {
+    top: 0;
+    left: 0;
+  }
+  & .foreground {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.slider {
+  position: relative;
+  width: var(--slider-size);
+  height: 20px;
+  background: white url('img/transparent.png');
+
+  & .range {
+    width: var(--slider-size);
+    height: 20px;
+    border: 1px solid black;
+    box-sizing: border-box;
+  }
+  & .handle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    background: white;
+    transform: translate(-50%, -25px);
+    box-sizing: border-box;
+  }
+
+  &.vertical {
+    height: var(--slider-size);
+    width: 20px;
+    & .range {
+      width: 20px;
+      height: var(--slider-size);
+    }
+    & .handle {
+      transform: translate(-5px, -50%);
+    }
+  }
+  &.disabled .handle {
+    background: #bbb;
+  }
 }
 
 .color-picker {
   position: relative;
   width: 500px;
-  height: 600px;
+  height: 520px;
   padding: 10px;
   box-sizing: border-box;
   background: hsl(210, 10%, 95%);
   border: hsl(210, 10%, 90%) 1px solid;
   box-shadow: 3px 3px 3px hsla(210, 10%, 30%, 0.2);
-}
-.slider {
-  position: relative;
-  width: 200px;
-  height: 20px;
-  background: url('./transparent.png');
-}
-.slider .range {
-  width: 200px;
-  height: 20px;
-  border: 1px solid black;
-  box-sizing: border-box;
-}
-.slider .handle {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  background: white;
-  transform: translate(-50%, -25px);
-  box-sizing: border-box;
-}
-.slider.vertical {
-  height: 200px;
-  width: 20px;
-}
-.slider.vertical .range {
-  width: 20px;
-  height: 200px;
-}
-.slider.vertical .handle {
-  transform: translate(-5px, -50%);
+  z-index: 10;
+
+  & .visual-picker {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  & .sl-select {
+    position: absolute;
+    top: calc(var(--hue-selector-margin) + var(--hue-selector-radius) + var(--hue-selector-stroke-width) / 2);
+    left: calc(var(--hue-selector-margin) + var(--hue-selector-radius) + var(--hue-selector-stroke-width) / 2);
+    width: calc(var(--sl-selector-width)*1.414);
+    height: calc(var(--sl-selector-width)*1.414);
+    transform: translate(-50%, -50%);
+    & .handle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border: 1px solid black;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  & .slider.saturation {
+    position: absolute;
+    top: 91px;
+    left: 30px;
+  }
+  & .slider.alpha {
+    position: absolute;
+    top: 91px;
+    right: 30px;
+  }
+  & .slider.lightness {
+    position: absolute;
+    top: 380px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  & .color-as-value {
+    position: absolute;
+    bottom: 20px;
+    border-collapse: collapse;
+    & th {
+      font-style: normal;
+    }
+    & td {
+      position: relative;
+      & input {
+        width: 100%;
+        height: 26px;
+        border: 1px solid hsl(210, 10%, 85%);
+        background: white;
+        text-align: center;
+        box-sizing: border-box;
+      }
+    }
+  }
 }
 
-.visual-picker {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.sl-select {
-  position: absolute;
-  top: calc(var(--hue-selector-margin) + var(--hue-selector-radius) + var(--hue-selector-stroke-width) / 2);
-  left: calc(var(--hue-selector-margin) + var(--hue-selector-radius) + var(--hue-selector-stroke-width) / 2);
-  width: calc(var(--sl-selector-width)*1.414);
-  height: calc(var(--sl-selector-width)*1.414);
-  transform: translate(-50%, -50%);
-}
-.sl-select .handle {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border: 1px solid black;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.slider.saturation {
-  position: absolute;
-  top: 91px;
-  left: 30px;
-}
-.slider.alpha {
-  position: absolute;
-  top: 91px;
-  right: 30px;
-}
-.slider.lightness {
-  position: absolute;
-  top: 380px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-table {
-  position: absolute;
-  bottom: 100px;
-  border-collapse: collapse;
-}
-table th {
-  font-style: normal;
-}
-table td {
-  position: relative;
-}
-table td input {
-  width: 100%;
-  height: 26px;
-  border: 1px solid hsl(210, 10%, 85%);
-  background: white;
-  text-align: center;
-  box-sizing: border-box;
-}

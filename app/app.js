@@ -1,32 +1,21 @@
 import React from 'react'
 
-import Color from './Color'
-import ColorPreview from './ColorPreview'
-import ColorPicker from "./ColorPicker"
+import ColorMixingCalculatorB from "./ColorMixingCalculatorB"
+import ColorMixingCalculatorC from "./ColorMixingCalculatorC"
+
+let logo = require("./img/cmc.png")
 
 class App extends React.Component {
 
-  state = {
-    color: new Color().toHSL(),
-    openColorPicker: false
-  }
-
-  toggleColorPicker = () => {
-    this.setState({openColorPicker: !this.state.openColorPicker})
-  }
-
-  onChange = (color) => {
-    this.setState({color: color})
-  }
-
   render() {
     return (
-      <div>
-        <ColorPreview color={this.state.color} onToggle={this.toggleColorPicker} />
-        {this.state.openColorPicker
-          ? <ColorPicker color={this.state.color} onChange={this.onChange} />
-          : null
-        }
+      <div id="container">
+        <header><img id="logo" src={logo} alt="logo" /></header>
+        <h1>Color Mixing Calculator</h1>
+        <h2>A + B = ? (Color Mixing)</h2>
+        <ColorMixingCalculatorC />
+        <h2>A + ? = C (Color Dividing)</h2>
+        <ColorMixingCalculatorB />
       </div>
     )
   }

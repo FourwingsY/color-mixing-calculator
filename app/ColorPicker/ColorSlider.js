@@ -1,17 +1,18 @@
 import React from 'react'
-import Draggable from './Draggable'
+import Draggable from '../Draggable'
 
 import cx from 'classnames'
 
 class ColorSlider extends Draggable {
   static propTypes = {
     color: React.PropTypes.object,
-    valueOf: React.PropTypes.string,
+    valueOf: React.PropTypes.string, // hue or lightness
     onChange: React.PropTypes.func.isRequired,
-    vertical: React.PropTypes.bool
+    vertical: React.PropTypes.bool,
+    disabled: React.PropTypes.bool
   }
 
-  setPosition = (e) => {
+  setPosition(e) {
     let sliderNode = this.draggingNode // from Draggable
     let sliderRect = sliderNode.getBoundingClientRect()
     let handlePosition = e.clientX - sliderRect.left
@@ -40,19 +41,14 @@ class ColorSlider extends Draggable {
       )`
     }
 
+    let onMouseDown = this.props.disabled ? () => {} : this.onMouseDown
     return (
       <div
-        className={cx("slider", {vertical: this.props.vertical}, this.props.valueOf)}
-        onMouseDown={this.onMouseDown}
+        className={cx("slider", {vertical: this.props.vertical, disabled: this.props.disabled}, this.props.valueOf)}
+        onMouseDown={onMouseDown}
       >
-        <div
-          className="range"
-          style={backgroundCSS}
-        />
-        <span
-          className="handle"
-          style={positionCSS}
-        />
+        <div className="range" style={backgroundCSS} />
+        <span className="handle" style={positionCSS} />
       </div>
     )
   }

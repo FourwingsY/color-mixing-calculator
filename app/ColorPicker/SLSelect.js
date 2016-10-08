@@ -1,5 +1,5 @@
 import React from 'react'
-import Draggable from './Draggable'
+import Draggable from '../Draggable'
 
 class SLSelect extends Draggable {
   static propTypes = {
@@ -7,7 +7,7 @@ class SLSelect extends Draggable {
     onSelect: React.PropTypes.func
   }
 
-  setPosition = (e) => {
+  setPosition(e) {
     let selectorNode = this.draggingNode // from Draggable
     let selectorRect = selectorNode.getBoundingClientRect()
 

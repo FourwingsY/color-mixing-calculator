@@ -14,7 +14,7 @@ module.exports = {
         {loader: "postcss"}
       ])},
       {test: /\.js$/, loader: 'babel', exclude: /node_modules/, include: /app/},
-      {test: /\.png$/, loader: 'file'}
+      {test: /\.png$/, loader: 'file?name=[name].[ext]'}
     ]
   },
   resolve: {
@@ -33,7 +33,8 @@ module.exports = {
   postcss: function (webpack) {
     return [
       require("postcss-import")({ addDependencyTo: webpack }),
-      require("postcss-cssnext")()
+      require("postcss-cssnext")(),
+      require("postcss-nesting")({})
     ]
   }
 }

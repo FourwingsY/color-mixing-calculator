@@ -1,24 +1,27 @@
 {
-  "name": "react-color-picker",
-  "version": "0.0.1",
-  "description": "React color picker",
+  "name": "color-mixing-calculator",
+  "version": "0.1.0",
+  "description": "color-mixing-calculator",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --config webpack.config.js --quiet --hot",
+    "start": "webpack-dev-server --config webpack.config.js --hot --inline --quiet ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FourwingsY/react-color-picker.git"
+    "url": "git+https://github.com/FourwingsY/color-mixing-calculator.git"
   },
   "keywords": [
-    "react"
+    "react",
+    "color",
+    "mixing",
+    "calculator"
   ],
   "author": "YG (fourwingsy@gmail.com)",
   "bugs": {
-    "url": "https://github.com/FourwingsY/react-color-picker/issues"
+    "url": "https://github.com/FourwingsY/color-mixing-calculator/issues"
   },
-  "homepage": "https://github.com/FourwingsY/react-color-picker#readme",
+  "homepage": "https://github.com/FourwingsY/color-mixing-calculator#readme",
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^15.3.1",
@@ -38,6 +41,7 @@
     "postcss-cssnext": "^2.8.0",
     "postcss-import": "~8.0.2",
     "postcss-loader": "^0.11.1",
+    "postcss-nesting": "^2.3.1",
     "style-loader": "^0.13.1",
     "webpack": "^2.1.0-beta",
     "webpack-dev-server": "^2.1.0-beta"
