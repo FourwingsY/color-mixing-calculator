@@ -1,0 +1,190 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#logo {
+  display: block;
+  height: 350px;
+  margin: 0 auto;
+}
+h1 {
+  display: none;
+}
+h2 {
+  width: 920px;
+  margin: 10px auto;
+}
+.color-mixing-calculator {
+  width: 920px;
+  margin: 10px auto;
+}
+.color-box {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px
+}
+.color-box .color-preview {
+  display: inline-block;
+  vertical-align: top;
+  width: 200px;
+  height: 200px;
+}
+.color-box .color-preview button {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  background: rgba(255,255,255,0.5) url(color-picker.png) no-repeat center;
+  background-size: 20px 20px;
+  border: none;
+  box-sizing: content-box;
+}
+.color-box .color-preview button:hover {
+  background-color: rgba(255,255,255, 0.8);
+}
+.math-symbol {
+  display: inline-block;
+  width: 30px;
+  height: 200px;
+  line-height: 200px;
+  vertical-align: top;
+  font-size: 20px;
+  text-align: center;
+}
+.mixed-result {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 200px;
+  height: 200px;
+  background: url(transparent.png)
+}
+.mixed-result .background, .mixed-result .foreground {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+}
+.mixed-result .background {
+  top: 0;
+  left: 0;
+}
+.mixed-result .foreground {
+  bottom: 0;
+  right: 0;
+}
+.slider {
+  position: relative;
+  width: 200px;
+  height: 20px;
+  background: white url(transparent.png)
+}
+.slider .range {
+  width: 200px;
+  height: 20px;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.slider .handle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  background: white;
+  -webkit-transform: translate(-50%, -25px);
+          transform: translate(-50%, -25px);
+  box-sizing: border-box;
+}
+.slider.vertical {
+  height: 200px;
+  width: 20px;
+}
+.slider.vertical .range {
+  width: 20px;
+  height: 200px;
+}
+.slider.vertical .handle {
+  -webkit-transform: translate(-5px, -50%);
+          transform: translate(-5px, -50%);
+}
+.slider.disabled .handle {
+  background: #bbb;
+}
+.color-picker {
+  position: relative;
+  width: 500px;
+  height: 520px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: hsl(210, 10%, 95%);
+  border: hsl(210, 10%, 90%) 1px solid;
+  box-shadow: 3px 3px 3px hsla(210, 10%, 30%, 0.2);
+  z-index: 10
+}
+.color-picker .visual-picker {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.color-picker .sl-select {
+  position: absolute;
+  top: 170px;
+  left: 170px;
+  width: 183.82px;
+  height: 183.82px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.color-picker .sl-select .handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.color-picker .slider.saturation {
+  position: absolute;
+  top: 91px;
+  left: 30px;
+}
+.color-picker .slider.alpha {
+  position: absolute;
+  top: 91px;
+  right: 30px;
+}
+.color-picker .slider.lightness {
+  position: absolute;
+  top: 380px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.color-picker .color-as-value {
+  position: absolute;
+  bottom: 20px;
+  border-collapse: collapse;
+}
+.color-picker .color-as-value th {
+  font-style: normal;
+}
+.color-picker .color-as-value td {
+  position: relative;
+}
+.color-picker .color-as-value td input {
+  width: 100%;
+  height: 26px;
+  border: 1px solid hsl(210, 10%, 85%);
+  background: white;
+  text-align: center;
+  box-sizing: border-box;
+}
+
